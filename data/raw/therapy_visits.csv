@@ -1,0 +1,8 @@
+patient_id,therapist_id,visit_date,visit_type,duration_minutes,notes_completed
+1,1,2025-01-02,Evaluation,45,true
+1,1,2025-01-03,Treatment,30,true
+2,1,2025-01-04,Treatment,30,false
+3,2,2025-01-06,Evaluation,60,true
+4,3,2025-01-07,Treatment,45,true
+5,4,2025-01-08,ICU Early Mobility,25,false
+6,3,2025-01-10,Neuro Rehab,50,true
