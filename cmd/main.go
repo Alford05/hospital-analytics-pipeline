@@ -22,6 +22,13 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	err = etl.InsertPatients(conn, patients)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Patients inserted successfully!")
 
 	for _, patient := range patients {
         fmt.Printf(
