@@ -25,7 +25,15 @@ func main() {
 		panic(err)
 	}
 
+	if err := loadStaffing(conn); err != nil {
+		panic(err)
+	}
+
 	if err := loadTherapyVisits(conn); err != nil {
+		panic(err)
+	}
+
+	if err := loadDocumentationMetrics(conn); err != nil {
 		panic(err)
 	}
 
@@ -68,6 +76,24 @@ func loadTherapists(conn *sql.DB) error {
 	)
 	return nil
 }
+
+func loadStaffing(conn *sql.DB) error {
+	staffing, err := etl.LoadStaffingCSV(
+		"data/raw/staffing.csv",
+	)
+	if err != nil {
+		return err
+	}
+	if err := etl.InsertStaffing(conn, staffing); err != nil {
+		return err
+	}
+	fmt.Printf(
+		"Loaded %d staffing records successfully\n",
+		len(staffing),
+	)
+	return nil
+}
+
 func loadTherapyVisits(conn *sql.DB) error {
 	visits, err := etl.LoadTherapyVisitsCSV(
 		"data/raw/therapy_visits.csv",
@@ -84,5 +110,25 @@ func loadTherapyVisits(conn *sql.DB) error {
 		"Loaded %d therapy visits successfully\n",
 		len(visits),
 	)
+	return nil
+}
+
+func loadDocumentationMetrics(conn *sql.DB) error {
+	metrics, err := etl.LoadDocumentationMetricsCSV(
+		"data/raw/documentation_metrics.csv",
+	)
+	if err != nil {
+		return err
+	}
+
+	if err := etl.InsertDocumentationMetrics(conn, metrics); err != nil {
+		return err
+	}
+
+	fmt.Printf(
+		"Loaded %d documentation metrics successfully\n",
+		len(metrics),
+	)
+
 	return nil
 }
