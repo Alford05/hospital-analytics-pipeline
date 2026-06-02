@@ -1,8 +1,25 @@
-patient_id,therapist_id,visit_date,visit_type,duration_minutes,notes_completed
-1,1,2025-01-02,Evaluation,45,true
-1,1,2025-01-03,Treatment,30,true
-2,1,2025-01-04,Treatment,30,false
-3,2,2025-01-06,Evaluation,60,true
-4,3,2025-01-07,Treatment,45,true
-5,4,2025-01-08,ICU Early Mobility,25,false
-6,3,2025-01-10,Neuro Rehab,50,true
+patient_id,therapist_id,visit_date,visit_type,duration_minutes
+1,1,2025-01-10,Evaluation,60
+1,1,2025-01-11,Treatment,45
+1,1,2025-01-12,Treatment,45
+1,1,2025-01-13,Discharge,30
+
+2,2,2025-01-10,Evaluation,60
+2,2,2025-01-11,Treatment,45
+2,2,2025-01-12,Discharge,30
+
+3,1,2025-01-15,Evaluation,60
+3,1,2025-01-16,Treatment,30
+3,1,2025-01-17,Treatment,45
+3,1,2025-01-18,Discharge,30
+
+4,3,2025-01-18,Evaluation,60
+4,3,2025-01-19,Treatment,45
+
+5,2,2025-01-20,Evaluation,60
+5,2,2025-01-21,Treatment,45
+5,2,2025-01-22,Treatment,45
+5,2,2025-01-23,Discharge,30
+
+6,1,2025-01-25,Evaluation,60
+6,1,2025-01-26,Treatment,45

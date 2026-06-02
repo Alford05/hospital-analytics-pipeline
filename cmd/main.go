@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"hospital-analytics-pipeline/internal/db"
 	"hospital-analytics-pipeline/internal/etl"
@@ -16,30 +17,72 @@ func main() {
 
 	defer conn.Close()
 
+	if err := loadPatients(conn); err != nil {
+		panic(err)
+	}
+
+	if err := loadTherapists(conn); err != nil {
+		panic(err)
+	}
+
+	if err := loadTherapyVisits(conn); err != nil {
+		panic(err)
+	}
+
+	fmt.Println("ETL completed successfully")
+
+}
+
+func loadPatients(conn *sql.DB) error {
 	patients, err := etl.LoadPatientsCSV(
 		"data/raw/patients.csv",
 	)
 	if err != nil {
-		panic(err)
+		return err
 	}
-	err = etl.InsertPatients(conn, patients)
-
-	if err != nil {
-		panic(err)
+	if err := etl.InsertPatients(conn, patients); err != nil {
+		return err
 	}
-
-	fmt.Println("Patients inserted successfully!")
-
-	for _, patient := range patients {
-        fmt.Printf(
-            "Name: %s %s | Diagnosis: %s | Age: %d | Insurance: %s\n",
-            patient.FirstName,
-            patient.LastName,
-            patient.Diagnosis,
-            patient.Age,
-            patient.InsuranceProvider,
-        )
-    }
+	fmt.Printf(
+		"Loaded %d patients successfully\n",
+		len(patients),
+	)
+	return nil
 }
 
+func loadTherapists(conn *sql.DB) error {
+	therapists, err := etl.LoadTherapistsCSV(
+		"data/raw/therapists.csv",
+	)
+	if err != nil {
+		return err
+	}
 
+	if err := etl.InsertTherapists(conn, therapists); err != nil {
+		return err
+	}
+
+	fmt.Printf(
+		"Loaded %d therapists successfully\n",
+		len(therapists),
+	)
+	return nil
+}
+func loadTherapyVisits(conn *sql.DB) error {
+	visits, err := etl.LoadTherapyVisitsCSV(
+		"data/raw/therapy_visits.csv",
+	)
+	if err != nil {
+		return err
+	}
+
+	if err := etl.InsertTherapyVisits(conn, visits); err != nil {
+		return err
+	}
+
+	fmt.Printf(
+		"Loaded %d therapy visits successfully\n",
+		len(visits),
+	)
+	return nil
+}
