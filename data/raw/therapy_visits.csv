@@ -23,3 +23,23 @@ patient_id,therapist_id,visit_date,visit_type,duration_minutes
 
 6,1,2025-01-25,Evaluation,60
 6,1,2025-01-26,Treatment,45
+
+7,4,2025-01-10,Evaluation,50
+7,4,2025-01-11,Treatment,45
+7,4,2025-01-12,Treatment,45
+7,4,2025-01-13,Treatment,55
+7,4,2025-01-14,Discharge,30
+
+8,5,2025-01-10,Evaluation,20
+8,5,2025-01-11,Treatment,35
+8,5,2025-01-12,Treatment,25
+8,5,2025-01-13,Treatment,55
+8,5,2025-01-14,Discharge,10
+
+9,5,2025-02-13,Evaluation,20
+9,5,2025-02-14,Treatment,35
+9,5,2025-02-15,Treatment,25
+9,5,2025-02-16,Treatment,55
+9,5,2025-02-17,Treatment,25
+9,5,2025-02-18,Discharge,10
+
