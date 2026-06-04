@@ -42,8 +42,15 @@ func main() {
 }
 
 func loadPatients(conn *sql.DB) error {
-	patients, err := etl.LoadPatientsCSV(
+	if err := etl.CleanPatientsCSV(
 		"data/raw/patients.csv",
+		"data/cleaned/patients_cleaned.csv",
+	); err != nil {
+		return err
+	}
+
+	patients, err := etl.LoadPatientsCSV(
+		"data/cleaned/patients_cleaned.csv",
 	)
 	if err != nil {
 		return err
@@ -95,8 +102,15 @@ func loadStaffing(conn *sql.DB) error {
 }
 
 func loadTherapyVisits(conn *sql.DB) error {
-	visits, err := etl.LoadTherapyVisitsCSV(
+	if err := etl.CleanTherapyVisitsCSV(
 		"data/raw/therapy_visits.csv",
+		"data/cleaned/therapy_visits_cleaned.csv",
+	); err != nil {
+		return err
+	}
+
+	visits, err := etl.LoadTherapyVisitsCSV(
+		"data/cleaned/therapy_visits_cleaned.csv",
 	)
 	if err != nil {
 		return err

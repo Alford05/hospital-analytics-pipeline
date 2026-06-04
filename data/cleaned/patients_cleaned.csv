@@ -1,0 +1,7 @@
+first_name,last_name,diagnosis,admit_date,discharge_date,readmitted,age,insurance_provider
+John,Smith,STROKE,2025-01-01,2025-01-10,false,72,Medicare
+Jane,Doe,HIP FRACTURE,2025-01-03,2025-01-08,true,81,Blue Cross
+Robert,Johnson,PNEUMONIA,2025-01-05,2025-01-12,false,67,Aetna
+Emily,Williams,CHF,2025-01-06,2025-01-15,true,75,UnitedHealth
+Michael,Brown,TBI,2025-01-07,2025-01-20,false,43,Cigna
+Sarah,Davis,CVA,2025-01-09,2025-01-18,false,69,Medicare
