@@ -20,7 +20,7 @@ flowchart TD
     E --> G[Indexes + Performance Analysis]
     F --> H[Operational Analytics]
     G --> H
-```markdown
+```
 
 ## Technologies
 
@@ -204,7 +204,7 @@ erDiagram
         decimal shift_hours
         int patient_load
     }
-
+```
 
 ## What I Learned
 
