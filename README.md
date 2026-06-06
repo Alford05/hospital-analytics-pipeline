@@ -8,6 +8,19 @@ Hospital Analytics Pipeline demonstrates the design and implementation of a back
 
 The project was inspired by real-world rehabilitation and acute care hospital workflows and focuses on therapist productivity, patient visits, staffing utilization, and documentation metrics.
 
+## Architecture
+
+```mermaid
+flowchart TD
+    A[Raw CSV Files] --> B[Go Cleaning Layer]
+    B --> C[Cleaned CSV Files]
+    C --> D[Go ETL Loaders]
+    D --> E[(PostgreSQL Database)]
+    E --> F[SQL Reporting Queries]
+    E --> G[Indexes + Performance Analysis]
+    F --> H[Operational Analytics]
+    G --> H
+
 ## Technologies
 
 * Go
@@ -134,6 +147,63 @@ therapists
     ↑
 staffing
 ```
+
+## Database Relationships
+
+```mermaid
+erDiagram
+    PATIENTS ||--o{ THERAPY_VISITS : has
+    THERAPISTS ||--o{ THERAPY_VISITS : performs
+    THERAPY_VISITS ||--o{ DOCUMENTATION_METRICS : has
+    THERAPISTS ||--o{ DOCUMENTATION_METRICS : completes
+    THERAPISTS ||--o{ STAFFING : scheduled_for
+
+    PATIENTS {
+        int patient_id
+        string first_name
+        string last_name
+        string diagnosis
+        date admit_date
+        date discharge_date
+        boolean readmitted
+        int age
+        string insurance_provider
+    }
+
+    THERAPISTS {
+        int therapist_id
+        string therapist_name
+        string department
+        date hire_date
+        boolean active
+    }
+
+    THERAPY_VISITS {
+        int visit_id
+        int patient_id
+        int therapist_id
+        date visit_date
+        string visit_type
+        int duration_minutes
+        boolean notes_completed
+    }
+
+    DOCUMENTATION_METRICS {
+        int note_id
+        int therapist_id
+        int visit_id
+        int completion_delay_minutes
+        timestamp completed_at
+    }
+
+    STAFFING {
+        int staffing_id
+        int therapist_id
+        date shift_date
+        decimal shift_hours
+        int patient_load
+    }
+    
 
 ## What I Learned
 
