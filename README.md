@@ -33,63 +33,39 @@ flowchart TD
 
 ## Features
 
-### ETL Pipeline
+### ETL Pipeline (Go-based)
+Built a full extract-transform-load pipeline in Go to process healthcare-style datasets.
 
-Extract, Transform, and Load workflow implemented in Go.
+- Ingests multiple CSV data sources (patients, therapists, visits, staffing, documentation metrics)
+- Performs data validation and transformation during ingestion
+- Standardizes inconsistent clinical-style fields (diagnosis, insurance, visit types)
+- Cleans and normalizes raw data before database insertion
+- Implements reusable loader and transformation functions
 
-Data sources:
+### Relational Data Model
+Designed a normalized PostgreSQL schema representing hospital workflows.
 
-* Patients
-* Therapists
-* Therapy Visits
-* Documentation Metrics
-* Staffing
+- Patient-to-visit relationships
+- Therapist assignment tracking
+- Documentation compliance tracking
+- Staffing and workload modeling
+- Enforced referential integrity using foreign keys
 
-Transformations include:
+### Analytics & Reporting Layer
+Built SQL-based reporting queries for operational healthcare analytics.
 
-* Data validation
-* Whitespace cleanup
-* Standardized diagnosis values
-* Standardized insurance provider values
-* Visit type normalization
-* Data quality checks
+- Therapist productivity reporting
+- Patient visit volume analysis
+- Documentation delay and compliance tracking
+- Staffing utilization metrics
+- Patient load distribution across therapists
 
-### Relational Database Design
+### Performance & Optimization
+Explored database performance tuning techniques:
 
-Database tables:
-
-* patients
-* therapists
-* therapy_visits
-* documentation_metrics
-* staffing
-
-Features:
-
-* Primary keys
-* Foreign key relationships
-* Indexed lookup columns
-* Normalized schema
-
-### Reporting
-
-Examples of implemented reports:
-
-* Therapist productivity
-* Visits by diagnosis
-* Documentation delay by therapist
-* Patient load by therapist
-* Staffing utilization
-* Average visits per patient
-
-### Performance Analysis
-
-Performance tuning techniques explored:
-
-* Index creation
-* Query optimization
-* EXPLAIN ANALYZE
-* Query plan interpretation
+- Indexed high-traffic query columns
+- Analyzed query execution plans using EXPLAIN ANALYZE
+- Optimized joins across multi-table reporting queries
 
 ## Project Structure
 
@@ -206,9 +182,7 @@ erDiagram
     }
 ```
 
-## What I Learned
-
-This project provided hands-on experience with:
+## Skills Demonstrated
 
 * ETL design and implementation
 * Relational database modeling
@@ -219,8 +193,6 @@ This project provided hands-on experience with:
 * Backend development using Go
 
 ## Future Improvements
-
-Potential enhancements:
 
 * Scheduled ETL jobs
 * REST API for analytics reports
